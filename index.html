@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CryptoCat | История (презентация на фото)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0f0a, #010101);
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            padding: 1.5rem 1rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(0, 20, 0, 0.45);
+            backdrop-filter: blur(2px);
+            border-radius: 2.5rem;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 0 30px rgba(0, 255, 100, 0.25), inset 0 0 10px rgba(0, 255, 100, 0.05);
+            border: 1px solid #2aff6e;
+        }
+
+        /* шапка с подписью CryptoCat = Home work История */
+        .hero {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px dashed #2eff7a;
+            padding-bottom: 1.5rem;
+        }
+
+        .crypto-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f1f0f;
+            padding: 0.6rem 2rem;
+            border-radius: 60px;
+            box-shadow: 0 0 12px #39ff14, inset 0 0 4px #aaffaa;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .crypto-badge span {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #b5ff9e, #2effaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px #1eff6e;
+        }
+
+        .sub {
+            font-family: monospace;
+            font-size: 1.1rem;
+            background: #0c1a0c;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 30px;
+            letter-spacing: 1.5px;
+            border-left: 3px solid #2eff6e;
+            border-right: 3px solid #2eff6e;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-top: 0.5rem;
+            text-shadow: 0 0 6px #1eff80, 0 0 12px #0f9f3a;
+            font-weight: 600;
+        }
+
+        .tagline {
+            color: #a0f5b0;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        /* сетка слайдов */
+        .slides-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .slide-card {
+            background: #051005d9;
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            border: 1px solid #39ff14;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 12px rgba(57, 255, 20, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            overflow: hidden;
+        }
+
+        .slide-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0, 255, 50, 0.25), 0 0 18px #39ff14;
+        }
+
+        .slide-header {
+            background: #0a1e0a;
+            padding: 0.7rem 1.5rem;
+            border-bottom: 1px solid #39ff14;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .slide-num {
+            font-family: monospace;
+            font-weight: bold;
+            background: #2eff6e20;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #b3ffcf;
+            border: 1px solid #6eff8e;
+        }
+
+        .slide-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #d2ffb0, #7effaa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* ТОЛЬКО КАРТИНКА — никакого текста презентации */
+        .slide-content {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .slide-img-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #031003;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            border: 1px dashed #64ff8a;
+        }
+
+        .slide-img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            max-height: 70vh;
+            border-radius: 1.2rem;
+            box-shadow: 0 0 15px #2aff70;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* подвал */
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px solid #2eff6e60;
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: #8aef9e;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .neon-link {
+            color: #9effb0;
+            text-decoration: none;
+            border-bottom: 1px dashed #2eff6e;
+        }
+
+        /* адаптивность */
+        @media (max-width: 780px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .crypto-badge span {
+                font-size: 1.4rem;
+            }
+            .slide-title {
+                font-size: 1.1rem;
+            }
+            .slide-content {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
+            }
+            .slide-header {
+                padding: 0.5rem 1rem;
+            }
+            .slide-title {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <div class="crypto-badge">
+            <span>🐱⚡ CryptoCat</span>
+        </div>
+        <div class="sub">✦ Home work · История ✦</div>
+        <h1>🎭 Деятель культуры<br>XIV — начало XVI века</h1>
+        <div class="tagline">⎯⎯⎯  неоновый стиль  ⎯⎯⎯</div>
+    </div>
+
+    <div class="slides-grid">
+        <!-- СЛАЙД 1 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#01</span>
+                <span class="slide-title">▸ Слайд 1 / Титул</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_1" alt="слайд 1">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 2 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#02</span>
+                <span class="slide-title">▸ Слайд 2 / Исторический контекст</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_2" alt="слайд 2">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 3 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#03</span>
+                <span class="slide-title">▸ Слайд 3 / Биография и вклад</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_3" alt="слайд 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 4 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#04</span>
+                <span class="slide-title">▸ Слайд 4 / Главные произведения</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_4" alt="слайд 4">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 5 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#05</span>
+                <span class="slide-title">▸ Слайд 5 / Особенности стиля</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_5" alt="слайд 5">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 6 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#06</span>
+                <span class="slide-title">▸ Слайд 6 / Влияние и последователи</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_6" alt="слайд 6">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 7 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#07</span>
+                <span class="slide-title">▸ Слайд 7 / Интересные факты</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_7" alt="слайд 7">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 8 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#08</span>
+                <span class="slide-title">▸ Слайд 8 / Цитаты и наследие</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_8" alt="слайд 8">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 9 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#09</span>
+                <span class="slide-title">▸ Слайд 9 / Значение для культуры</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_9" alt="слайд 9">
+                </div>
+            </div>
+        </div>
+
+        <!-- СЛАЙД 10 -->
+        <div class="slide-card">
+            <div class="slide-header">
+                <span class="slide-num">#10</span>
+                <span class="slide-title">▸ Слайд 10 / Итог</span>
+            </div>
+            <div class="slide-content">
+                <div class="slide-img-wrapper">
+                    <img class="slide-img" src="ВСТАВЬ_BASE64_СЛАЙДА_10" alt="слайд 10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>🐾 CryptoCat223 · Неоновая презентация · История культуры XIV–XVI вв.</div>
+        <div>⚡ Весь текст презентации на фото (Base64) | адаптивно под любые устройства</div>
+        <div>🔗 <span class="neon-link">CryptoCat = Home work История</span> — только сайт, без флешки</div>
+        <div style="font-size:0.7rem;">✧ ссылка: <strong style="color:#b6ff9e;">CryptoCat223.vercel.app</strong> ✧</div>
+    </footer>
+</div>
+
+</body>
+</html>
